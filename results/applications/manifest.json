@@ -1,0 +1,53 @@
+{
+  "source_sha256": {
+    "results/utopia_compound/refined_matching/tls_meta_manuscript_metrics/utopia_tls_metagene_manuscript_metrics.csv": "1e02f65c9a17f8ee495b71337a6d1b98e0540cc7a46e673a3133c1f0ac23a9fd",
+    "results/crispr_shared_cbt/manuscript_metrics/within_cell_union/crispr_metrics_with_within_cell_union.csv": "91cc0785ed53ae9a839716d21f3ae2ced65a5bdc8627b6d999f193c372e62be2",
+    "results/crispr_shared_cbt/manuscript_metrics/crispr_manuscript_metrics.csv": "ff7ec3d386afa6700a737a1b3ca03995fdc2935ad3606c2646d0e2108a79edb3",
+    "results/crispr_shared_cbt/checkpoints/achilles_no_positives_pvalues.csv": "bb4fcc3a70219e047cd715bc4f4470e592b014e742d268882df20d225d3b47f4"
+  },
+  "files": {
+    "utopia/scale1_curves.csv": {
+      "rows": 500,
+      "sha256": "15e234b1ba4ca87ab66123815f18639d5dab8ff75f5973984aa8d6e6fa0fa031",
+      "sources": [
+        "results/utopia_compound/refined_matching/tls_meta_manuscript_metrics/utopia_tls_metagene_manuscript_metrics.csv"
+      ],
+      "transformation": "Select scale and rename count columns; all metric values preserved."
+    },
+    "utopia/scale2_curves.csv": {
+      "rows": 500,
+      "sha256": "174a2bf4af96aaf0255dcf010747f0b35f5ae3e2e055a7c8540b013ec33f26a0",
+      "sources": [
+        "results/utopia_compound/refined_matching/tls_meta_manuscript_metrics/utopia_tls_metagene_manuscript_metrics.csv"
+      ],
+      "transformation": "Select scale and rename count columns; all metric values preserved."
+    },
+    "utopia/scale4_curves.csv": {
+      "rows": 500,
+      "sha256": "6d32cd3471a50a966ff844c747714bcbac43e521912b3a328c6bb8fc76d039af",
+      "sources": [
+        "results/utopia_compound/refined_matching/tls_meta_manuscript_metrics/utopia_tls_metagene_manuscript_metrics.csv"
+      ],
+      "transformation": "Select scale and rename count columns; all metric values preserved."
+    },
+    "crispr/unrestricted_curves.csv": {
+      "rows": 160,
+      "sha256": "6ca0ecc5097120d414a76b7fbc4b62484bf586f5d61b9d4bb30529cb54da9be2",
+      "sources": [
+        "results/crispr_shared_cbt/manuscript_metrics/within_cell_union/crispr_metrics_with_within_cell_union.csv"
+      ],
+      "transformation": "Rename the Dempster display labels; all metric values preserved."
+    },
+    "crispr/global_null_curves.csv": {
+      "rows": 160,
+      "sha256": "56e31cc4d3690db2062fd490087b360e2adc55daed7d799e2a8b937047532fa3",
+      "sources": [
+        "results/crispr_shared_cbt/manuscript_metrics/crispr_manuscript_metrics.csv",
+        "results/crispr_shared_cbt/checkpoints/achilles_no_positives_pvalues.csv"
+      ],
+      "transformation": "Preserve the three saved method curves; add within-cell BH by aggregating cached Dempster p-values with applications/support/crispr_metrics.py:task_curves. No scores, matching, or models recomputed."
+    }
+  },
+  "validation": "Lossless CSV round trip; complete alpha grids; unique curve keys; UTOPIA count/FDP checks; independent per-cell BH step-up check for the added CRISPR global-null curve.",
+  "raw_data_or_checkpoints_bundled": false
+}

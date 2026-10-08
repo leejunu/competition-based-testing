@@ -1,0 +1,54 @@
+{
+  "supplementary_replications": 6000,
+  "supplementary_rows": 270000,
+  "methods": [
+    "Equal-weight CBT",
+    "Subsampled CBT",
+    "CBT e-values"
+  ],
+  "settings": {
+    "binary_decreasing": {
+      "replicates": 1000,
+      "effects": 9,
+      "rows": 45000
+    },
+    "binary_increasing": {
+      "replicates": 1000,
+      "effects": 9,
+      "rows": 45000
+    },
+    "homogeneous_uniform": {
+      "replicates": 1000,
+      "effects": 9,
+      "rows": 45000
+    },
+    "homogeneous_weighted": {
+      "replicates": 1000,
+      "effects": 9,
+      "rows": 45000
+    },
+    "smooth_decreasing": {
+      "replicates": 1000,
+      "effects": 9,
+      "rows": 45000
+    },
+    "smooth_increasing": {
+      "replicates": 1000,
+      "effects": 9,
+      "rows": 45000
+    }
+  },
+  "original_main_sources_unchanged": true,
+  "published_snapshots_verified": 10,
+  "binary_smooth_equal_weight_subsampled_rejection_count_agreement": "144000/144000 rows agree with historical supplementary results after fresh computation",
+  "tests_passed": 6,
+  "real_data_full_runs_performed": false,
+  "results_sha256": {
+    "binary_decreasing.csv.gz": "631c94887e18a7d94de9662d59dcdcf3c0a2941006a8e85dd4ca1b61e9f8da0d",
+    "binary_increasing.csv.gz": "c562ee6dbf63f00da10bd7d82daa3d79196585d0140c5a8342c76ef3002df185",
+    "homogeneous_uniform.csv.gz": "61a7e3dccb64a3085aa09700ef9eb533a1520fc751a889e14ac7324028ea164d",
+    "homogeneous_weighted.csv.gz": "0d7ef4c7ec2ff35e3f0435cc9810c1ed03df18ff4b790b7deb141d790abf60c7",
+    "smooth_decreasing.csv.gz": "01bb241fdbca2f2ad94bda0387807e46f365827334b38804e41769eddd598ef1",
+    "smooth_increasing.csv.gz": "49c50d9d8cd8cbe887b40ce0cbbd779bb35c149ed47a4a7dd6d337afc96f0960"
+  }
+}

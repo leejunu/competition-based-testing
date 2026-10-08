@@ -1,0 +1,42 @@
+Run these commands from the competition-based-testing repository root.
+Public source notebooks and data are downloaded locally, not redistributed.
+
+1. Obtain the original analysis code from the version-1 Figshare record:
+   https://doi.org/10.6084/m9.figshare.28850873.v1
+
+   mkdir -p external/CRISPR data/crispr
+   curl -L --fail https://ndownloader.figshare.com/files/53935559 -o external/CRISPR/HitcallingComparisons.ipynb
+   curl -L --fail https://ndownloader.figshare.com/files/53935556 -o external/CRISPR/HitcallingCB2.ipynb
+
+   These are Dempster et al.'s original analysis notebooks. The derived Chronos
+   matrices needed for our comparison are already in the authors' Achilles.zip;
+   running the upstream notebooks is unnecessary unless rebuilding those matrices.
+
+2. Obtain the public inputs:
+
+   curl -L --fail https://ndownloader.figshare.com/files/53935529 -o data/crispr/Achilles.zip
+   curl -L --fail https://ndownloader.figshare.com/files/43346361 -o data/crispr/AchillesCommonEssentialControls.csv
+   curl -L --fail https://ndownloader.figshare.com/files/43346391 -o data/crispr/AvanaGuideMap.csv
+
+   The last two files are from DepMap 23Q4 Public:
+   https://doi.org/10.6084/m9.figshare.24667905
+   Keep Achilles.zip compressed. The analysis reads its CSVs directly.
+   Expected MD5 checksums (also enforced by analyze_crispr.py):
+     Achilles.zip                         b122b36ab37658c728bc06f23c88cd70
+     AchillesCommonEssentialControls.csv 1cbfa612d5d4d16e287bb9f23964839c
+     AvanaGuideMap.csv                    b694af3982d70117fd6214fdd8ce2e2e
+
+3. Run the included manuscript analysis and plots:
+
+   python applications/analyze_crispr.py
+   Rscript --vanilla applications/plot_applications.R --application crispr --input results/crispr
+
+The two tasks are the unrestricted all-gene experiment and the global null 
+experiment. We reproduce ARC, GG and Dempster empirical p-values,
+with global BH for CBT, and both global and within cell line BH for the
+Dempster baseline. Matching uses the eight guide-
+design covariates used in the manuscript; no expression data are required.
+The alpha grid is 0.005 to 0.2 in increments of 0.005. Unknown truth labels are
+kept distinct from known nulls and positives. The unrestricted labeled FDP is
+known false discoveries divided by all discoveries, matching the manuscript.
+Outputs: results/crispr/ and plots/.

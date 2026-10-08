@@ -1,0 +1,44 @@
+{
+  "settings": [
+    "homogeneous_uniform",
+    "homogeneous_weighted",
+    "binary_increasing",
+    "binary_decreasing",
+    "smooth_increasing",
+    "smooth_decreasing"
+  ],
+  "replicates": 1000,
+  "jobs": 8,
+  "seed_offset": 0,
+  "etas": [
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    4.5,
+    5.0,
+    5.5,
+    6.0
+  ],
+  "output": "results/supplementary",
+  "methods": "supplementary",
+  "python": "3.13.2",
+  "numpy": "2.4.4",
+  "sklearn": "1.9.0",
+  "tau": 0.25,
+  "n_train": 2000,
+  "fdr_alpha": 0.1,
+  "fwer_alpha": 0.2,
+  "offset_standardization": "population (ddof=0), preserving original code",
+  "evalue_definition": "T_j^+ in numerator and denominator; final offset 1/n_j",
+  "execution_source_sha256": {
+    "cbt.py": "ffb4bdc89470f61e0f0f9b8d7c9a58d40903d6aa99fe88639f86b56e087bd272",
+    "simulate.py": "98963c35785ab3d7847277f6b466813b1bc708ba1dddac4d26ff13c1e6480027"
+  },
+  "packaged_source_sha256": {
+    "cbt.py": "05d8387c3938d20978e91fbb93c57adb76846f4284e5611ce542b64a5fcdc019",
+    "simulate.py": "34dcd75c93d0f40f1b5234decb61584baf28b318b9abed384a3ad55f963b55f8"
+  },
+  "post_execution_changes": "Formatting; main-only shared label-generation correction; lossless gzip output. Supplementary numerical logic unchanged."
+}

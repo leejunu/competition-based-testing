@@ -1,0 +1,4 @@
+-r ../requirements.txt
+torch==2.11.0
+pillow==12.2.0
+tqdm==4.68.2

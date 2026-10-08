@@ -1,0 +1,82 @@
+{
+  "plotting": "R manuscript builders",
+  "original_results_hashes_unchanged": true,
+  "max_absolute_mean_differences": {
+    "homogeneous_uniform": 1.1102230246251565e-16,
+    "homogeneous_weighted": 1.1102230246251565e-16,
+    "binary_increasing": 1.1102230246251565e-16,
+    "binary_decreasing": 4.440892098500626e-16,
+    "smooth_increasing": 1.1102230246251565e-16,
+    "smooth_decreasing": 4.718447854656915e-16,
+    "shared_2000": 1.1102230246251565e-16,
+    "shared_4000": 1.1102230246251565e-16,
+    "q_n50_m500": 1.1102230246251565e-16,
+    "q_n500_m50": 1.1102230246251565e-16
+  },
+  "supplementary_max_absolute_mean_differences": {
+    "binary_decreasing": 4.440892098500626e-16,
+    "binary_increasing": 1.1102230246251565e-16,
+    "homogeneous_uniform": 1.1102230246251565e-16,
+    "homogeneous_weighted": 1.1102230246251565e-16,
+    "smooth_decreasing": 1.1102230246251565e-16,
+    "smooth_increasing": 2.7755575615628914e-16
+  },
+  "standalone_simulation_render_verified": true,
+  "application_render_checks": {
+    "utopia": "bundled manuscript metrics for scales 1, 2, and 4",
+    "crispr_unrestricted": "bundled manuscript metrics with both Dempster comparisons",
+    "crispr_global_null": "bundled manuscript metrics plus within-cell BH aggregated from cached p-values"
+  },
+  "plotting_source_sha256": {
+    "applications/plot_applications.R": "38ba202e938666c24b3888e98d4fb915cd3087f18a335ab2cbc1eed6e7118412",
+    "plot_results.R": "2908d5510ffa1ffd965e992832fec0f49964d8d5254ca3c57979c70484d47775",
+    "plotting/crispr.R": "e1521cbf8ca11cd3a8880a114d9d8a3216d3ff91bc2c5f46be6f7ab5fe2d0207",
+    "plotting/io.R": "890575810c6a58ae8384478072c7e674f7a333c0c4b71915288e19ba3fd4fa86",
+    "plotting/nonshared.R": "728e2bea43f392729c852bccafb85f60e02fb4aaf3b209a9630590f1db98ee0d",
+    "plotting/q_finalist.R": "4e153a82bc53aa8ba9f1b2ef8942bedb8ba4312fe6f142e1365555bd9e282118",
+    "plotting/shared.R": "6610729068729a6c28606694a477a17ae11f8401427a99388443a8e39258ed10",
+    "plotting/style.R": "67bcd0da55d40accad4a0db905c95c40cd06a999e3309993c2f1d274123cc1c2",
+    "plotting/utopia.R": "69d04c1718bea1c2511b3a746475087a9f35f947f261517364a9ae8c6b7b1b00"
+  },
+  "homogeneous_plot_omits": [
+    "Equal-weight CBT",
+    "Subsampled CBT"
+  ],
+  "binary_smooth_pngs_and_summary_unchanged_after_homogeneous_filter": true,
+  "supplementary_legend": {
+    "evalue_label": "CBT (e-BH)",
+    "position": "first row, second column, immediately right of CBT",
+    "method_colors_unchanged": true
+  },
+  "supplementary_markers": {
+    "CBT (e-BH)": "standard-size asterisk (shape 8, size 1.05)",
+    "Equal-weight CBT": "square",
+    "Subsampled CBT": "square",
+    "other_methods": "circle"
+  },
+  "figure_files": {
+    "main": [
+      "nonshared-binary-10-50.pdf",
+      "nonshared-homogeneous-m500-n25-uniform-weighted-w.pdf",
+      "nonshared-smooth-10-50.pdf",
+      "q-finalist-bh-uniform-w.pdf",
+      "shared-block-bh.pdf"
+    ],
+    "supplementary": [
+      "nonshared-binary-10-50-supplementary-methods.pdf",
+      "nonshared-homogeneous-m500-n25-uniform-weighted-w-supplementary-methods.pdf",
+      "nonshared-smooth-10-50-supplementary-methods.pdf"
+    ],
+    "applications": [
+      "utopia.pdf",
+      "crispr_unrestricted.pdf",
+      "crispr_global_null.pdf"
+    ]
+  },
+  "figure_output_directory": "plots/",
+  "summary_files": [
+    "summary-main.csv",
+    "summary-supplementary.csv"
+  ],
+  "all_figures_command_verified": true
+}

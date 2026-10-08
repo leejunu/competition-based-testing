@@ -1,0 +1,80 @@
+Run these commands from the competition-based-testing repository root.
+Public UTOPIA source and data are downloaded locally and are not redistributed.
+
+1. Obtain the upstream source:
+
+   mkdir -p external data/utopia
+   git clone https://github.com/kaitianjin/UTOPIA.git external/UTOPIA
+   git -C external/UTOPIA checkout 1649fbd3f480ef7c5a09eb09ab10e247be104a0c
+
+2. Download the processed gastric-cancer demo from the authors' record:
+   https://zenodo.org/records/18794410
+   The authors also provide https://upenn.box.com/s/5kgy0wg5dyoccordv6w8ej8x15me65bt
+   Place demo.z01, demo.z02 and demo.zip in data/utopia/.
+   Verify MD5 values:
+     demo.z01  97ee86795a4911e6e9b829d48ba7c6d3
+     demo.z02  bac367acdaf9dd35b467983a4fd3c628
+     demo.zip  cea4a45716f6d4e6bcbd7fa972370a9b
+
+   cd data/utopia
+   zip -s 0 demo.zip --out demo_combined.zip
+   unzip demo_combined.zip
+   cd ../..
+
+   The resulting location must be data/utopia/demo/utopia_config, with sibling
+   embeddings/, transcripts/, mask/, and histology_clustering/ directories.
+   The demo already contains the expensive histology feature extraction.
+
+3. Create and activate a separate Python virtual environment for UTOPIA.
+   Python 3.11 must already be installed. Run these commands from the repository root:
+
+   python3.11 -m venv .venv-utopia-demo
+   source .venv-utopia-demo/bin/activate
+
+   In this environment, install UTOPIA and its dependencies following
+   external/UTOPIA/README.MD. After installation, return to this repository
+   root, then run the preprocessing commands:
+
+   cd data/utopia/demo
+   utopia --config utopia_config --process_roi_data
+   utopia --config utopia_config --histology_clustering
+   python -m UTOPIA.calibration.generate_folds . --n_clusters 15
+
+   Keep the supplied ROI geometry, 15 clusters, scales 1/2/4, both ROI indices
+   (0 and 1), fold widths 200/100/50 and safe boundary 16. Preserve the demo's
+   targets_to_infer.json. Our TLS meta-gene threshold is 0.05.
+   Skip an already-completed preparation stage only if its files are intact.
+   Our training script requires calibration/roi_0_fold_masks.pickle,
+   roi_0_center_masks.pickle and the corresponding ROI 1 files.
+
+4. Return from data/utopia/demo to the repository root and switch to the
+   reproduction environment (.venv), created following the main README:
+
+   cd ../../..
+   deactivate
+   source .venv/bin/activate
+
+   Run our included training, scoring and analysis code:
+
+   python applications/train_utopia.py --device mps --resume
+   python applications/score_utopia.py --device mps
+   python applications/analyze_utopia.py
+   Rscript --vanilla applications/plot_applications.R --application utopia --input results/utopia/analysis
+
+   Use --device cpu or --device cuda on other hardware. The original training
+   used MPS, seed 42, 20 epochs, batch size 8096, Adam at 0.001, dropout 0.1,
+   and the UTOPIA asymmetric loss with beta=2 and its double-square-root
+   behavior. The full model and every spatial calibration fold are trained.
+   Exact neural-network outputs can differ across hardware/library versions.
+   NOTE: with these specs, the training took around 5-6 hours.
+
+Outputs: results/utopia/{models,scores,analysis}/ and plots/.
+The analysis matches on ten PCA covariates without spatial coordinates, uses
+all calibration controls for ARC/GG (matching using all calibration samples, 
+regardless of null status), and uses null controls for the one-control comparator. 
+UTOPIA baselines alone use the original medium batch correction. Score normalization 
+is incremental in ROI order 0, then 1, exactly as in the original workflow.
+
+Source documentation:
+https://github.com/kaitianjin/UTOPIA
+https://github.com/kaitianjin/UTOPIA/blob/1649fbd3f480ef7c5a09eb09ab10e247be104a0c/demo/DOWNLOAD_DATA

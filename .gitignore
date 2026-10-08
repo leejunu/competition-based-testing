@@ -1,0 +1,13 @@
+.venv/
+.venv-utopia-demo/
+__pycache__/
+*.pyc
+.DS_Store
+external/
+data/
+results/reproduced/
+/plots/
+results/utopia/models/
+results/utopia/scores/
+results/utopia/analysis/*.npz
+results/crispr/*_pvalues.csv.gz
