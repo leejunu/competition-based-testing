@@ -70,13 +70,20 @@ for (group in names(groups)) {
     data <- data[order(data$design_facet, data$eta), ]
     labels <- if (group == "homogeneous") c("plain('Uniform')~italic(K)", "plain('Weighted')~italic(K)") else c("Case~1", "Case~2")
     plot <- build_heterogeneous_overall(data, column_labels = labels,
-      method_legend_nrow = if (supplementary) 2L else 1L,
-      bh_label = if (supplementary) "BH / e-BH" else "BH")
+      method_legend_nrow = if (supplementary && group == "homogeneous") 3L else if (supplementary) 2L else 1L,
+      bh_label = if (supplementary) "BH / e-BH" else "BH",
+      include_bonferroni = !(supplementary && group == "homogeneous"))
     height <- if (group == "binary") 3.7 else 3.4
   }
   stem <- figure_stems[[group]]
   if (supplementary) stem <- paste0(stem, "-supplementary-methods")
-  save_official_plot(plot, args$output, stem, width = 6, height = height)
+  width <- 6
+  if (supplementary && group == "homogeneous") {
+    # Preserve one half of the original grid; only the wrapped legend grows.
+    width <- (6 - 0.12) / 2
+    height <- height + (0.75 - 0.58)
+  }
+  save_official_plot(plot, args$output, stem, width = width, height = height)
   message("Wrote ", file.path(args$output, paste0(stem, ".{pdf,png}")))
 }
 write.csv(do.call(rbind, summaries), file.path(args$output, paste0("summary-", args$methods, ".csv")), row.names = FALSE)

@@ -368,7 +368,8 @@ build_heterogeneous_overall <- function(
     bonferroni_alpha = 0.2,
     column_labels = c("Case~1", "Case~2"),
     method_legend_nrow = 2L,
-    bh_label = "BH") {
+    bh_label = "BH",
+    include_bonferroni = TRUE) {
   measurement_file <- tempfile(fileext = ".pdf")
   grDevices::cairo_pdf(measurement_file, width = 6, height = 3.1)
   on.exit({
@@ -420,6 +421,17 @@ build_heterogeneous_overall <- function(
   bonferroni_grob$heights <- aligned_heights
   bh_grob$widths <- aligned_widths
   bonferroni_grob$widths <- aligned_widths
+  if (!include_bonferroni) {
+    return(gtable::gtable_matrix(
+      name = "bh-only",
+      grobs = matrix(list(
+        bh_grob,
+        build_homogeneous_legend(bh_data, method_nrow = method_legend_nrow)
+      ), ncol = 1),
+      widths = grid::unit(1, "null"),
+      heights = grid::unit.c(grid::unit(1, "null"), grid::unit(0.75, "in"))
+    ))
+  }
   legend <- build_homogeneous_legend(
     bh_data,
     method_nrow = method_legend_nrow
