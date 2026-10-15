@@ -2,7 +2,7 @@
 
 This repository implements the methods and reproduces the results in the following paper:
 
-Junu Lee, Rina Foygel Barber, Richard J. Samworth, and Zhimei Ren. *Compound p-values for competition-based testing.*
+J. Lee, R. F. Barber, R. J. Samworth, Z. Ren. "Compound p-values for competition-based testing." ([arXiv](https://arxiv.org/abs/2610.20411))
 
 We provide two options:
 1. Plot our pre-computed numerical results.
